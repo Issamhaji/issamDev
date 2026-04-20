@@ -97,6 +97,7 @@ type Project = {
   github?: string | null;
   live?: string | null;
   category: string;
+  role?: string;
 };
 
 const typedProjects: Project[] = projects as unknown as Project[];
@@ -122,6 +123,11 @@ const ProjectCard = ({ project, index, inView }: { project: Project; index: numb
       
       <div className="p-6 flex flex-col flex-grow">
         <h3 className="text-xl font-semibold mb-2">{project.title}</h3>
+        {project.role && (
+          <span className="inline-block text-sm font-medium text-brand-600 dark:text-brand-400 mb-2 px-2 py-1 bg-brand-50 dark:bg-brand-900/20 rounded-md border border-brand-100 dark:border-brand-800/30 w-fit">
+            {project.role}
+          </span>
+        )}
         <p className="text-gray-600 dark:text-gray-400 mb-4 flex-grow">{project.description}</p>
         
         <div className="flex flex-wrap gap-2 mb-4">
@@ -156,7 +162,7 @@ const ProjectCard = ({ project, index, inView }: { project: Project; index: numb
               className="flex items-center gap-2 text-gray-600 dark:text-gray-400 hover:text-brand-900 dark:hover:text-brand-400 transition-colors"
             >
               <ExternalLink size={20} />
-              <span>Live Demo</span>
+              <span>Visit Website</span>
             </a>
             )}
         </div>

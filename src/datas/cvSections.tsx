@@ -134,7 +134,8 @@ export const projects = [
     tech: ["Magento 2", "PHP", "MySQL", "Alpine.js", "SEO"],
     github: null,
     live: "https://lesdrugstoresdumaroc.com/",
-    category: "ecommerce"
+    category: "ecommerce",
+    role: "Développeur Magento 2 (CDI)"
   },
   {
     title: "Xtremsboat",
@@ -156,12 +157,13 @@ export const projects = [
   },
   {
     title: "SRA Pharmazon",
-    description: "Plateforme B2B e-commerce pharmaceutique développée avec Magento 2 et intégration Symfony. Synchronisation des stocks et commandes via API REST, gestion des catalogues B2B et workflows métier spécifiques.",
+    description: "Plateforme B2B e-commerce pharmaceutique développée avec Magento 2. Synchronisation des stocks et commandes via API REST, gestion des catalogues B2B et workflows métier spécifiques.",
     image: "/images/projects/pharmazon.png",
     tech: ["Magento 2", "Symfony", "API REST", "PHP", "MySQL", "B2B"],
     github: null,
     live: "https://www.sra-pharmazon.com/",
-    category: "ecommerce"
+    category: "ecommerce",
+    role: "Développeur Magento 2 (CDI)"
   },
   {
     title: "Tapis d'Entrée",
@@ -170,8 +172,29 @@ export const projects = [
     tech: ["Magento 2", "PHP", "Alpine.js", "MySQL", "SEO", "B2B/B2C"],
     github: null,
     live: "https://www.tapisdentree.fr/",
-    category: "ecommerce"
-  }
+    category: "ecommerce",
+    role: "Développeur Magento 2 (CDI)"
+  },
+  {
+    title: "Marwa",
+    description: "Site e-commerce B2C spécialisé dans la mode et le prêt-à-porter. Développement full stack avec Magento 2, intégration de fonctionnalités avancées, optimisation SEO et expérience utilisateur.",
+    image: "/images/projects/marwa.png",
+    tech: ["Magento 2", "PHP", "MySQL", "Alpine.js", "SEO"],
+    github: null,
+    live: "https://www.marwa.com/",
+    category: "ecommerce",
+    role: "Développeur Magento 2 (CDI)"
+  },
+  {
+    title: "Maison Vivaraise",
+    description: "Site e-commerce spécialisé dans la décoration et le linge de maison. Développement et maintenance des fonctionnalités sous Magento 2, assurant une expérience d'achat haut de gamme.",
+    image: "/images/projects/maisonvivaraise.png",
+    tech: ["Magento 2", "PHP", "MySQL", "Alpine.js", "SEO"],
+    github: null,
+    live: "https://www.maisonvivaraise.com/",
+    category: "ecommerce",
+    role: "Développeur Magento 2 (CDI)"
+  },
 ];
 
 
