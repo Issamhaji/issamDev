@@ -67,10 +67,17 @@ export default function Footer() {
               </li>
               <li className="flex items-center gap-2">
                 <Phone size={16} className="shrink-0" />
+                <a href="tel:+33756755511" className="hover:text-brand-900 dark:hover:text-brand-400 transition-colors">
+                  +33 7 56 75 55 11
+                </a>
+              </li>
+              <li className="flex items-center gap-2">
+                <Phone size={16} className="shrink-0" />
                 <a href="tel:+212620312407" className="hover:text-brand-900 dark:hover:text-brand-400 transition-colors">
                   +212 6 20 31 24 07
                 </a>
               </li>
+
               <li className="flex items-center gap-2">
                 <MapPin size={16} className="shrink-0" />
                 <span>Sala Al Jadida – Rabat, Maroc</span>

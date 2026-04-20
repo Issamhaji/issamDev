@@ -1,9 +1,9 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { Download, GraduationCap, Award, BookOpen, Plus, Minus, ChevronRight, ChevronDown } from 'lucide-react';
+import { Download, GraduationCap, Plus, Minus, ChevronRight, ChevronDown } from 'lucide-react';
 import { useState, useRef, useEffect } from 'react';
 // Import the data from your data file
-import { education, certifications } from '../datas/cvSections';
+import { education } from '../datas/cvSections';
 import { generateCVByProfile } from '../utils/cvGenerator';
 import { profileSpecificData } from '../datas/profileCVData';
 
@@ -15,12 +15,6 @@ interface EducationItem {
   description: string;
 }
 
-interface CertificationItem {
-  name: string;
-  issuer: string;
-  year: string;
-}
-
 export default function CV() {
   const [ref, inView] = useInView({
     triggerOnce: true,
@@ -29,7 +23,6 @@ export default function CV() {
 
   // États pour gérer l'affichage des formations et certifications
   const [showAllEducation, setShowAllEducation] = useState(false);
-  const [showAllCertifications, setShowAllCertifications] = useState(false);
   const [expandedItem, setExpandedItem] = useState<string | null>(null);
   
   // Nouvel état pour le menu déroulant
@@ -84,10 +77,6 @@ export default function CV() {
     return bEndYear - aEndYear;
   });
 
-  // Tri des certifications de la plus récente à la plus ancienne
-  const sortedCertifications = [...certifications].sort((a: CertificationItem, b: CertificationItem) => 
-    parseInt(b.year) - parseInt(a.year)
-  );
 
   // Nombre d'éléments à afficher initialement
   const initialCount = 2;
@@ -97,10 +86,6 @@ export default function CV() {
     ? sortedEducation 
     : sortedEducation.slice(0, initialCount);
 
-  // Certifications à afficher
-  const displayedCertifications = showAllCertifications 
-    ? sortedCertifications 
-    : sortedCertifications.slice(0, initialCount);
 
   // Gestion de l'expansion des cartes pour voir les détails
   const toggleItemExpansion = (type: string, index: number) => {
@@ -160,7 +145,7 @@ export default function CV() {
             </div>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12">
+          <div className="max-w-2xl mx-auto">
             {/* Section Éducation */}
             <div>
               <div className="flex items-center gap-3 mb-6">
@@ -227,68 +212,6 @@ export default function CV() {
                       <>
                         <Plus size={16} />
                         <span>Voir {sortedEducation.length - initialCount} autres formations</span>
-                      </>
-                    )}
-                  </motion.button>
-                )}
-              </div>
-            </div>
-
-            {/* Section Certifications */}
-            <div>
-              <div className="flex items-center gap-3 mb-6">
-                <Award className="text-[#071C0F] dark:text-[#60855A]" size={24} />
-                <h3 className="text-2xl font-semibold">Attestations</h3>
-              </div>
-              
-              <div className="space-y-6 relative">
-                <AnimatePresence>
-                  {displayedCertifications.map((cert, index) => (
-                    <motion.div
-                      key={cert.name}
-                      initial={{ opacity: 0, x: 20, height: "auto" }}
-                      animate={{ opacity: 1, x: 0, height: "auto" }}
-                      exit={{ opacity: 0, height: 0, marginBottom: 0 }}
-                      transition={{ duration: 0.4, delay: index * 0.1 }}
-                      className={`bg-white dark:bg-gray-900 p-6 rounded-lg shadow-lg transition-all duration-300 cursor-pointer ${expandedItem === `cert-${index}` ? 'ring-2 ring-[#071C0F] dark:ring-[#60855A]' : 'hover:shadow-xl'}`}
-                      onClick={() => toggleItemExpansion('cert', index)}
-                    >
-                      <div className="flex justify-between items-start">
-                        <div>
-                          <div className="flex items-center gap-2 mb-2">
-                            <BookOpen className="text-[#071C0F] dark:text-[#60855A]" size={20} />
-                            <h4 className="font-semibold">{cert.name}</h4>
-                          </div>
-                          <p className="text-gray-600 dark:text-gray-400 mb-1">{cert.issuer}</p>
-                          <p className="text-sm text-gray-500 dark:text-gray-500">{cert.year}</p>
-                        </div>
-                        <ChevronRight 
-                          className={`text-[#071C0F] dark:text-[#60855A] transition-transform duration-300 ${expandedItem === `cert-${index}` ? 'rotate-90' : ''}`} 
-                          size={20} 
-                        />
-                      </div>
-                    </motion.div>
-                  ))}
-                </AnimatePresence>
-                
-                {/* Bouton "Voir plus" pour les certifications */}
-                {sortedCertifications.length > initialCount && (
-                  <motion.button
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    transition={{ delay: 0.5 }}
-                    onClick={() => setShowAllCertifications(!showAllCertifications)}
-                    className="flex items-center justify-center gap-2 mt-4 w-full py-2 bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-700 rounded-lg text-[#071C0F] dark:text-[#60855A] hover:bg-gray-50 dark:hover:bg-gray-800 transition-all duration-300"
-                  >
-                    {showAllCertifications ? (
-                      <>
-                        <Minus size={16} />
-                        <span>Voir moins</span>
-                      </>
-                    ) : (
-                      <>
-                        <Plus size={16} />
-                        <span>Voir {sortedCertifications.length - initialCount} autres certifications</span>
                       </>
                     )}
                   </motion.button>
